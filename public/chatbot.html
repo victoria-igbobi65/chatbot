@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot UI</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="chat-window"></div>
+    <div id="button-container">
+      <button id="button1">Place Order</button>
+      <button id="button2">Cancel Order</button>
+      <button id="button3">Order History</button>
+      <button id="button4">Current Order</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
+    <script>
+        const socket = io('ws://localhost:5000');
+
+        socket.on('connected', function(msg) {
+            console.log('Customer connected')
+        })
+    </script>
+  </body>
+</html>
