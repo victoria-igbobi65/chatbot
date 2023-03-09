@@ -1,12 +1,14 @@
 const express = require("express");
 const { Server } = require('socket.io');
 const http = require('http');
-const cookieParser = require('cookie-parser') 
-const { v4: uuidv4} = require('uuid')
-const sessionMiddleware = require('./middlewares/sessionMiddleware')
+const cookieParser = require('cookie-parser') /*parse cookies from request*/
+const { v4: uuidv4} = require('uuid') /*unique id generator*/
+const sessionMiddleware = require('./middlewares/sessionMiddleware') /*express session middleware*/
+const wrap = require('./middlewares/wrap')
 const CONFIG = require('./config/config')
-require('./config/db')( CONFIG.DB )
+require('./config/db')( CONFIG.DB ) /*DB connection*/
 
+/*variable declarations*/
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server)
@@ -23,11 +25,7 @@ app.get("/", (req, res) => {
 })
 
 
-io.use((socket, next) => {
-  sessionMiddleware(socket.request, {}, next);
-  
-});
-
+io.use(wrap( sessionMiddleware ));
 io.on("connection", async(socket) => {
     const session = socket.request.session;
     let userID = session.userId
