@@ -1,7 +1,58 @@
+
 body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  height: 80px;
+  padding: 0 20px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logo-container h1 {
   margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.online {
+  background-color: green;
+}
+
+.offline {
+  background-color: red;
+}
+
+.status {
+  font-size: 14px;
 }
 
 #chat-window {
@@ -48,4 +99,7 @@ body {
 
 .button-container button:hover {
   background-color: #0D47A1;
+}
+.welcome{
+  align-self: left; width: 50%; height: 100px; font-size: large; margin: 50px;
 }
