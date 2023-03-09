@@ -7,8 +7,6 @@ const sessionMiddleware = require('./middlewares/sessionMiddleware') /*express s
 const wrap = require('./middlewares/wrap')
 const CONFIG = require('./config/config')
 require('./config/db')( CONFIG.DB ) /*DB connection*/
-
-/*variable declarations*/
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server)
