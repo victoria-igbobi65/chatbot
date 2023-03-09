@@ -32,8 +32,7 @@ io.on("connection", async(socket) => {
 
     if ( !userID ){
         userID = uuidv4();
-
-        socket.request.session.userId = userID 
+        session.userId = userID 
         session.save((err) => {
           if (err) {
             console.error("Error saving session:", err);
