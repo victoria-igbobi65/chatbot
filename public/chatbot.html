@@ -5,12 +5,25 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+  <nav>
+    <div class="logo-container">
+      <img src="https://cdn2.vectorstock.com/i/1000x1000/02/61/restaurant-cafe-logo-menu-dish-food-vector-8420261.jpg" alt="Logo">
+      <h1>Chatbot</h1>
+    </div>
+    <div class="status-container">
+      <div class="indicator online"></div>
+      <span class="status">Online</span>
+    </div>
+  </nav>
+
     <div id="chat-window"></div>
+    <div id="welcome"></div>
     <div id="button-container">
       <button id="button1">Place Order</button>
-      <button id="button2">Cancel Order</button>
-      <button id="button3">Order History</button>
-      <button id="button4">Current Order</button>
+      <button id="button2">Checkout Order</button>
+      <button id="button3">Cancel Order</button>
+      <button id="button4">Order History</button>
+      <button id="button5">Current Order</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
     <script src="script.js"></script>
