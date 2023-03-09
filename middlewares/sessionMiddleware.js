@@ -14,9 +14,9 @@ store.on("error", function (error) {
 });
 
 module.exports = session({
-    secret: "your-secret-key-here",
-    resave: true,
-    saveUninitialized: true,
-    store: store,
-    cookie: { secure: false }, // Set secure to true if using HTTPS
+  secret: "your-secret-key-here",
+  resave: true,
+  saveUninitialized: true,
+  store: store,
+  cookie: { secure: false }, // Set secure to true if using HTTPS
 });
