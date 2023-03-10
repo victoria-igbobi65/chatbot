@@ -1,12 +1,16 @@
+/* MODULE IMPORTS */
 const express = require("express");
+const http = require('http')
 const { Server } = require('socket.io');
-const http = require('http');
-const cookieParser = require('cookie-parser') /*parse cookies from request*/
-const { v4: uuidv4} = require('uuid') /*unique id generator*/
-const sessionMiddleware = require('./middlewares/sessionMiddleware') /*express session middleware*/
+const cookieParser = require('cookie-parser') 
 const wrap = require('./middlewares/wrap')
 const CONFIG = require('./config/config')
-require('./config/db')( CONFIG.DB ) /*DB connection*/
+require('./config/db')( CONFIG.DB ) /*DB connection*/ 
+const errorMiddleware = require('./middlewares/error')
+const connectionMiddleware = require('./middlewares/connection')
+const sessionMiddleware = require('./middlewares/sessionMiddleware') 
+
+/* VARIABLE DECLARATIONS */
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server)
@@ -15,40 +19,18 @@ const PORT = CONFIG.PORT
 
 
 /*MIDDLEWARES*/
-app.use(sessionMiddleware)
-app.use( express.static('public') )
-app.use(cookieParser())
+app.use(sessionMiddleware) /* Session Middleware */
+app.use( express.static('public') ) /* Static Files */
+app.use(cookieParser()) /* Parse Cookies*/
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/public' + '/chatbot.html')
 })
 
 
 io.use(wrap( sessionMiddleware ));
-io.on("connection", async(socket) => {
-    const session = socket.request.session;
-    let userID = session.userId
+io.on("connection", connectionMiddleware )
+io.on('error', errorMiddleware )
 
-    if ( !userID ){
-        userID = uuidv4();
-        session.userId = userID 
-        session.save((err) => {
-          if (err) {
-            console.error("Error saving session:", err);
-          } else {
-            console.log("Saved user ID to session:", userID);
-          }
-        });
-        console.log("New user joined!");
-        socket.emit("welcome", "Welcome to food order chatbot, How may i help you today?");
-    }
-    else{
-        console.log('old member')
-        socket.emit("welcome", "Welcome back to food order chatbot, How may i help you today?");
-    }
-    
-    console.log("client connected", socket.id)
-    
-})
 
 server.listen(PORT, ()=>{
     console.log(`server is running on http://localhost:${PORT}`);
