@@ -24,7 +24,7 @@ This chatbot assists customers with placing orders for their preferred meals.
 </div>
 <div align="center">
   
-  <a href="">![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)a>
+  <a href="">![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)</a>
   
   
 </div>
