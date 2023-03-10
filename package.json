@@ -2,9 +2,8 @@
   "name": "chatbot",
   "version": "1.0.0",
   "description": "A food ordering chatbot",
-  "main": "app.js",
   "scripts": {
-    "dev": "nodemon app"
+    "start": "nodemon app"
   },
   "author": "Victoria",
   "license": "ISC",
