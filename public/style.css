@@ -55,6 +55,8 @@ nav {
   font-size: 14px;
 }
 
+
+
 #chat-window {
   width: 100%;
   height: 400px;
@@ -73,14 +75,14 @@ nav {
 }
 
 .message-user {
-  background-color: #2196F3;
+  background-color: #293036;
   color: #fff;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-.button-container {
+/*.button-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -100,6 +102,11 @@ nav {
 .button-container button:hover {
   background-color: #0D47A1;
 }
+*/
 .welcome{
   align-self: left; width: 50%; height: 100px; font-size: large; margin: 50px;
+}
+
+#chat-container {
+  display: flex;
 }
