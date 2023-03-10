@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Schema = new mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
     userid:{
@@ -16,9 +16,10 @@ const orderSchema = new Schema({
     },
     status:{
         type: String,
-        enum: ['pending', 'completed', 'cancelled']
+        enum: ['pending', 'completed', 'cancelled'],
+        default: "pending"
     }
-})
+}, { timestamps: true })
 
 const order = mongoose.model('Order', orderSchema)
 module.exports={ order };
