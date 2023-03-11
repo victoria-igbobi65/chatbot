@@ -36,11 +36,15 @@ Firstly, you need to clone the repository into your local machine
 ```javascript
 $ git clone https://github.com/victoria-igbobi65/chatbot.git
 ```
-Secondly, you need to install the dependencies.
+Secondly, change directory into the project file
+```
+$ cd chatbot 
+```
+Thirdly, you need to install the dependencies.
 ```javascript
 $ npm i 
 ``` 
-Thirdly, you need to create a `.env` file and copy the `.env.example` file to it.
+Fourthly, you need to create a `.env` file and copy the `.env.example` file to it.
 ```javascript
 $ cp .env.example .env 
 ```
