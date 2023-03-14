@@ -14,6 +14,10 @@ const orderSchema = new Schema({
         type: String,
         required: [true, 'Please provide item name!']
     },
+    img:{
+        type: String,
+        required: [true, `Please provide image URl`]
+    },
     status:{
         type: String,
         enum: ['pending', 'completed', 'cancelled'],
