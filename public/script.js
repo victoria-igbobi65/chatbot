@@ -13,6 +13,17 @@ const buttons = [
 ]
 
 /* HELPER FUNCTION */
+
+const notificationSound = new Audio("./audio/pop.mp3")
+
+function disableButtons() {
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach((button) => {
+        button.disabled = true
+    })
+}
+
+
 const appendMessage = (userType, message, msgPos = '') => {
     const welcomeMessageElement = document.getElementById('chat-window')
     const classN = userType ? 'message-bot' : 'message-user'
@@ -136,7 +147,7 @@ const appendButton = (itemList, menu, msgPos = '') => {
         button.setAttribute('id', item.key)
         button.innerHTML = item.value
         button.addEventListener('click', () => {
-            //handleButtonClick(item.key)
+            disableButtons()
             handle(item)
         })
 
@@ -185,6 +196,7 @@ const button = (text, object) => {
     const button = document.createElement('button')
     button.innerHTML = text
     button.addEventListener('click', () => {
+        disableButtons()
         handleButtonClick(object)
     })
     return button
@@ -203,6 +215,7 @@ const handleMenuButtonclick = (userRequest) => {
 /* EVENT EMITTERS */
 socket.on('welcome', function (msg) {
     setTimeout(() => {
+        notificationSound.play()
         appendMessage(true, msg, 'isFirst')
         appendButton(buttons, true, 'isFirst')
     }, 200)
@@ -214,6 +227,7 @@ socket.on('user_request', function (msg) {
 
 socket.on('bot_response', function (data) {
     setTimeout(() => {
+        notificationSound.play()
         appendMessage(true, data.message, 'menu')
         appendButton(data.menu, false, 'menu')
     }, 500)
@@ -221,6 +235,7 @@ socket.on('bot_response', function (data) {
 
 socket.on('cancel_response', function (msg) {
     setTimeout(() => {
+        notificationSound.play()
         appendMessage(true, msg, 'notCompleted')
         // so whats going on here
         // we will be having more than one of this request, so we need to make the id of the button onctainer unique, scroll to line  unique
@@ -238,6 +253,7 @@ socket.on('cancel_response', function (msg) {
 
 socket.on('completed_response', function (msg) {
     setTimeout(() => {
+        notificationSound.play()
         appendMessage(true, msg, 'completed')
 
         let buttonContainer = document.getElementById(
@@ -252,6 +268,7 @@ socket.on('completed_response', function (msg) {
 
 socket.on('history', function (data) {
     setTimeout(() => {
+        notificationSound.play()
         cardContainer(data)
 
         let buttonContainer = document.getElementById(`historyback${tries}`)
@@ -282,6 +299,7 @@ socket.on('history', function (data) {
 
 socket.on('menu_response', function (msg) {
     setTimeout(() => {
+        notificationSound.play()
         appendMessage(true, msg, 'menu_response')
 
         let buttonContainer = document.getElementById(
