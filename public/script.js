@@ -1,4 +1,4 @@
-const socket = io('ws://localhost:5000')
+const socket = io()
 
 // so i need something to keep track of tries, like if the user click on back, to start again, the bot needs to know that its a need request;
 var tries = 1
