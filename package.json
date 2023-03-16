@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A food ordering chatbot",
   "scripts": {
-    "start": "nodemon app"
+    "start": "node app"
   },
   "author": "Victoria",
   "license": "ISC",
