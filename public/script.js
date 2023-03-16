@@ -23,6 +23,11 @@ function disableButtons() {
     })
 }
 
+function scrollToBottom() {
+    var chatContainer = document.getElementById("chat-window")
+    chatContainer.scrollTop = chatContainer.scrollHeight
+}
+
 
 const appendMessage = (userType, message, msgPos = '') => {
     const welcomeMessageElement = document.getElementById('chat-window')
@@ -218,11 +223,13 @@ socket.on('welcome', function (msg) {
         notificationSound.play()
         appendMessage(true, msg, 'isFirst')
         appendButton(buttons, true, 'isFirst')
+        scrollToBottom()
     }, 200)
 })
 
 socket.on('user_request', function (msg) {
     appendMessage(false, msg)
+    scrollToBottom()
 })
 
 socket.on('bot_response', function (data) {
@@ -230,6 +237,7 @@ socket.on('bot_response', function (data) {
         notificationSound.play()
         appendMessage(true, data.message, 'menu')
         appendButton(data.menu, false, 'menu')
+        scrollToBottom()
     }, 500)
 })
 
@@ -248,6 +256,7 @@ socket.on('cancel_response', function (msg) {
         const button1 = button('Back', { key: '88', value: 'Back' })
         button1.className = 'btn btn-outline-dark w-100 mb-1'
         buttonContainer.appendChild(button1)
+        scrollToBottom()
     }, 500)
 })
 
@@ -263,6 +272,7 @@ socket.on('completed_response', function (msg) {
         const button1 = button('Back', { key: '88', value: 'Back' })
         button1.className = 'btn btn-outline-dark w-100 mb-1'
         buttonContainer.appendChild(button1)
+        scrollToBottom()
     }, 500)
 })
 
@@ -294,6 +304,7 @@ socket.on('history', function (data) {
         buttonContainer.appendChild(button2)
         buttonContainer.appendChild(button4)
         buttonContainer.appendChild(button3)
+        scrollToBottom()
     }, 500)
 })
 
@@ -326,6 +337,7 @@ socket.on('menu_response', function (msg) {
             buttonContainer.appendChild(button1)
             buttonContainer.appendChild(button2)
             buttonContainer.appendChild(button3)
+            scrollToBottom()
         }
     }, 500)
 })
