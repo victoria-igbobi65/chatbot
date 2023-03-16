@@ -2,6 +2,7 @@
 const express = require("express");
 const http = require('http')
 const { Server } = require('socket.io');
+const cors = require('cors')
 const cookieParser = require('cookie-parser') 
 const wrap = require('./middlewares/wrap')
 const CONFIG = require('./config/config')
@@ -22,6 +23,7 @@ const PORT = CONFIG.PORT
 app.use(sessionMiddleware) /* Session Middleware */
 app.use( express.static('public') ) /* Static Files */
 app.use(cookieParser()) /* Parse Cookies*/
+app.use( cors())
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/public' + '/chatbot.html')
 })
