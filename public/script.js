@@ -284,26 +284,14 @@ socket.on('history', function (data) {
         let buttonContainer = document.getElementById(`historyback${tries}`)
         buttonContainer.innerHTML = ''
 
-        const button1 = button('Checkout Order', {
-            key: '99',
-            value: 'Checkout Order',
-        })
-        const button2 = button('Cancel Order', {
-            key: '0',
-            value: 'Cancel Order',
-        })
-        const button3 = button('Back', { key: '88', value: 'Back' })
-        const button4 = button('Place Order', { key: '1', value: 'Back' })
+        const button1 = button('Back', { key: '88', value: 'Back' })
+        const button2 = button('Place Order', { key: '1', value: 'Back' })
 
-        button1.className = 'btn btn-outline-primary w-100 mb-1'
-        button2.className = 'btn btn-outline-danger w-100 mb-1'
-        button3.className = 'btn btn-outline-dark w-100 mb-1'
-        button4.className = 'btn btn-outline-success w-100 mb-1'
+        button2.className = 'btn btn-outline-primary w-100 mb-1'
+        button1.className = 'btn btn-outline-dark w-100 mb-1'
 
-        buttonContainer.appendChild(button1)
         buttonContainer.appendChild(button2)
-        buttonContainer.appendChild(button4)
-        buttonContainer.appendChild(button3)
+        buttonContainer.appendChild(button1)
         scrollToBottom()
     }, 500)
 })
