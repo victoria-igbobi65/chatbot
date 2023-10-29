@@ -1,0 +1,6 @@
+# Ignore files
+secret.txt
+
+# Ignore directories
+node_modules/
+.git/
