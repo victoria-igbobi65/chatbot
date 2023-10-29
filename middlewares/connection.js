@@ -28,6 +28,10 @@ const connectionMiddleware = (socket) => {
 
     console.log('client connected', socket.id)
 
+    socket.on("disconnect", () => {
+        console.log("client disconnected", socket.id)
+    })
+
     socket.on('request', async function ( data ) {
 
         console.log( data )
