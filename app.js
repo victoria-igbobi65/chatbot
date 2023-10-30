@@ -9,7 +9,9 @@ const CONFIG = require('./config/config')
 require('./config/db')( CONFIG.DB ) /*DB connection*/ 
 const errorMiddleware = require('./middlewares/error')
 const connectionMiddleware = require('./middlewares/connection')
-const sessionMiddleware = require('./middlewares/sessionMiddleware') 
+const sessionMiddleware = require('./middlewares/sessionMiddleware'); 
+const { Request } = require("./models/mysql_model");
+const { order } = require("./models/order");
 
 /* VARIABLE DECLARATIONS */
 const app = express();
@@ -26,6 +28,24 @@ app.use(cookieParser()) /* Parse Cookies*/
 app.use( cors()) /* Allow cors from any origin*/
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/public' + '/chatbot.html')
+})
+app.get('/sample', async(req, res) => {
+    try{
+        const request = await Request.create({ time: Date.now(), ip: req.ip })
+        const order = await order.create({
+            userid: "a27b9d88-3ada-42c7-81ee-f66c9a9a2e7e",
+            itemid: "2",
+            itemname: "pizza",
+            img: "./img/pizza1.jpg",
+            status: "pending"
+        })
+        res.status(200).json({
+            msg: 'writing data to both database was a success'
+        })
+    }
+    catch(err){
+        res.status(500).json({ error: "An error occurred", err })
+    }
 })
 
 
